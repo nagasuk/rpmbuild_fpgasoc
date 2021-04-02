@@ -1,5 +1,5 @@
 %define name drvfpgasoc
-%define version 1.0.0
+%define version 1.0.1
 %define release 1
 %define target_kern_ver 5.4.64-altera
 
@@ -13,7 +13,7 @@ Packager: Kohei Nagasu <kohei@lcarsnet.pgw.jp>
 Vendor: Drone DIY Prj.
 
 %undefine _disable_source_fetch
-Source0: https://git.lcarsnet.pgw.jp/gitbucket/kohei/%{name}/archive/%{name}-%{version}.tar.gz
+Source0: https://github.com/nagasuk/%{name}/archive/release-%{version}.tar.gz#/%{name}-release-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires: kernel-image-zimage = 5.4.64+lts+git0+1f2f1ded05-r0
 BuildRequires: kernel-devsrc = 1.0 make
@@ -25,7 +25,7 @@ Kernel driver of Linux on FPGA SoC (e.g. Cyclone V SoC) to access FPGA fabric.
 %prep
 rm -rf ${RPM_BUILD_ROOT}
 
-%setup -n %{name}-%{name}-%{version}
+%setup -n %{name}-release-%{version}
 
 %build
 make
@@ -56,6 +56,9 @@ depmod
 /usr/include/%{name}.h
 
 %changelog
-* Wed Feb 25 2021 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.0
+* Fri Apr 02 2021 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.1
+- Change repository to github and licensed.
+
+* Thu Feb 25 2021 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.0
 - Initial release
 
