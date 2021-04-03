@@ -37,16 +37,35 @@ make DESTDIR=${RPM_BUILD_ROOT} install
 rm -rf ${RPM_BUILD_ROOT}
 
 %post
-depmod
 if [ -z "$(cat /etc/group | awk -F: '{ print $1 }' | grep -e 'fpga')" ]
 then
 	groupadd -r fpga
 fi
 
-%postun
+# This routine is executed at first installation
+if [ "${1}" = '1' ]
+then
+	depmod
+	modprobe fpgasoc
+fi
+
+%preun
 modprobe -r fpgasoc
-groupdel fpga
+
+%postun
 depmod
+
+# This routine is executed at update
+if [ "${1}" = '1' ]
+then
+	modprobe fpgasoc
+fi
+
+# This routine is executed at last uninstallation
+if [ "${1}" = '0' ]
+then
+	groupdel fpga
+fi
 
 %files
 %defattr(-, root, root)
