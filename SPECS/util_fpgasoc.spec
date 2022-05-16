@@ -1,13 +1,13 @@
 %define name util_fpgasoc
 %define version 1.0.1
-%define release 1
+%define release 2
 
 Summary: util_fpgasoc (Utilities to control FPGA fabric)
 Name: %{name}
 Version: %{version}
 Release: %{release}
 Group: Applications/System
-License: MIT/GPT
+License: MIT/GPL
 Packager: Kohei Nagasu <kohei@lcarsnet.pgw.jp>
 Vendor: Drone DIY Prj.
 

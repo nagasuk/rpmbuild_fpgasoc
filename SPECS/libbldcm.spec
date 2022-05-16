@@ -1,8 +1,8 @@
-%define name libfpgasoc
-%define version 1.0.1
-%define release 2
+%define name libbldcm
+%define version 1.0.0
+%define release 1
 
-Summary: libfpgasoc (Library to control FPGA fabric by using drvfpgasoc)
+Summary: libbldcm (Library to control BLDCM by using mBldcm)
 Name: %{name}
 Version: %{version}
 Release: %{release}
@@ -14,12 +14,12 @@ Vendor: Drone DIY Prj.
 %undefine _disable_source_fetch
 Source0: https://github.com/nagasuk/%{name}/archive/release-%{version}.tar.gz#/%{name}-release-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires: drvfpgasoc >= 1.0.0
-BuildRequires: drvfpgasoc >= 1.0.0 make cmake >= 3.8.0
+Requires: libfpgasoc >= 1.0.1
+BuildRequires: libfpgasoc >= 1.0.1 make cmake >= 3.8.0
 BuildArch: cyclone5
 
 %description
-Library to use FPGA fabric of FPGA SoC (e.g. Cyclone V SoC) by using drvfpgasoc (Linux kernel module to access FPGA fabric).
+Library to control HW IP of mBldcm via libfpgasoc.
 
 %prep
 rm -rf ${RPM_BUILD_ROOT}
@@ -44,16 +44,13 @@ ldconfig
 
 %files
 %defattr(-, root, root)
-/usr/lib/libfpgasoc.so.1.0.1
-/usr/lib/libfpgasoc.so.1
-/usr/lib/libfpgasoc.so
-/usr/include/libfpgasoc.h
-/usr/include/libfpgasoc.hpp
+/usr/lib/libbldcm.so.1.0.0
+/usr/lib/libbldcm.so.1
+/usr/lib/libbldcm.so
+/usr/include/libbldcm.hpp
+/usr/include/libbldcm/register_map.hpp
 
 %changelog
-* Fri Apr 02 2021 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.1
-- Change repository to github and licensed.
-
-* Thu Feb 25 2021 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.0
+* Mon May 16 2022 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.0
 - Initial release
 

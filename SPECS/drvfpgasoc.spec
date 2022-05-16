@@ -1,6 +1,6 @@
 %define name drvfpgasoc
 %define version 1.0.1
-%define release 1
+%define release 2
 %define target_kern_ver 5.4.64-altera
 
 Summary: Driver to access FPGA fabric (Linux kernel module)
@@ -8,7 +8,7 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Group: Development/Libraries
-License: MIT/GPT
+License: MIT/GPL
 Packager: Kohei Nagasu <kohei@lcarsnet.pgw.jp>
 Vendor: Drone DIY Prj.
 
