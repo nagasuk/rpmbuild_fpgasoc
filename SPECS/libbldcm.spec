@@ -1,6 +1,6 @@
 %define name libbldcm
 %define version 1.0.0
-%define release 1
+%define release 2
 
 Summary: libbldcm (Library to control BLDCM by using mBldcm)
 Name: %{name}
@@ -27,7 +27,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %setup -n %{name}-release-%{version}
 
 %build
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DLIBBLDCM_BUILD_SHARED_LIBS=ON
 cmake --build build
 
 %install
@@ -49,8 +49,14 @@ ldconfig
 /usr/lib/libbldcm.so
 /usr/include/libbldcm.hpp
 /usr/include/libbldcm/register_map.hpp
+/usr/lib/cmake/bldcm/bldcm-config.cmake
+/usr/lib/cmake/bldcm/bldcm-config-release.cmake
+/usr/lib/cmake/bldcm/bldcm-config-version.cmake
 
 %changelog
-* Mon May 16 2022 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.0
+* Tue May 24 2022 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.0-2
+- Add config file of cmake for users to use find_package.
+
+* Mon May 16 2022 Kohei Nagasu <kohei@lcarsnet.pgw.jp> 1.0.0-1
 - Initial release
 
